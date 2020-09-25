@@ -1,0 +1,79 @@
+#loading-screen {
+  viewport-fill: #3d2b22;
+}
+
+#start-screen {
+  viewport-fill: #593f32;
+}
+
+#options-screen {
+  viewport-fill: #593f32;
+  fill: #fffefe;
+}
+
+#add-button {
+   width: 95%;
+   y:68%;
+   x:3%;
+}
+
+#indicator {
+  fill: #DF9A57;
+  stroke-width: 9;
+  opacity: 0.25;
+}
+
+#header-text {
+  fill: #fffefe;
+  font-size: 35;
+  font-family: SevilleSharp-Regular;
+  text-anchor: start;
+  text-length: 100;
+  x: 5%;
+  y: 15%;
+}
+
+#caffeine-count {
+  fill: #d79e4f;
+  font-size: 30;
+  font-family: Colfax-Bold;
+  text-anchor: middle;
+  text-length: 100;
+  x: 77%;
+  y: 35%;
+}
+
+.tile-list-item {
+  height: 70;
+}
+
+.tile-list-item-2 {
+  height: 100;
+  fill: white;
+}
+
+#main_text {
+  text-length: 100;
+  height: 32;
+  font-size: 25;
+  font-family: SevilleSharp-Regular;
+  fill: #ffeed6;
+  x: 5%;
+}
+
+#unit_text {
+  text-length: 100;
+  text-anchor: end;
+  fill: #987D7C;
+  x: 90%;
+  font-size: 18;
+  width: 100%;
+}
+
+.tile-divider-bottom {
+  x: 5%;
+  y: 100%-2;
+  width: 90%;
+  height: 1;
+  fill: #8a693e;
+}

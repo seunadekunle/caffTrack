@@ -1,0 +1,65 @@
+{ 
+    "drink_list": 
+    [
+     {
+       "drink": "Coffee",
+       "size": 8,
+       "caffeine": 96
+     },
+     {
+       "drink": "Coffee, decaf",
+       "size": 8,
+       "caffeine": 2
+     },
+     {
+       "drink": "Espresso",
+       "size": 1,
+       "caffeine": 64
+     },
+     {
+       "drink": "Instant Coffee",
+       "size": 8,
+       "caffeine": 62
+     },
+     {
+       "drink": "Instant Coffee, decaf",
+       "size": 8,
+       "caffeine": 2
+     },
+     {
+       "drink": "Black Tea",
+       "size": 8,
+       "caffeine": 47
+     },
+     {
+       "drink": "Black Tea, decaf",
+       "size": 8,
+       "caffeine": 2
+     },
+     {
+       "drink": "Green Tea",
+       "size": 8,
+       "caffeine": 28
+     },
+     {
+       "drink": "Bottled Tea",
+       "size": 8,
+       "caffeine": 19
+     },
+     {
+       "drink": "Cola",
+       "size": 8,
+       "caffeine": 22
+     },
+     {
+       "drink": "Energy drink",
+       "size": 8,
+       "caffeine": 29
+     },
+     {
+       "drink": "Energy shot",
+       "size": 1,
+       "caffeine": 215
+     }
+    ]
+}

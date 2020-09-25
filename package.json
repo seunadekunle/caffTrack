@@ -1,0 +1,31 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~4.2.0"
+  },
+  "fitbit": {
+    "appUUID": "76a16eb2-f45b-4831-b9d4-8fd458207e08",
+    "appType": "app",
+    "appDisplayName": "caffTrack",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#795548",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "higgs",
+      "meson",
+      "gemini",
+      "mira"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "caffTrack"
+      }
+    },
+    "defaultLanguage": "en-US"
+  },
+  "dependencies": {
+    "@fitbit/sdk-cli": "^1.7.3"
+  },
+  "scripts": {
+    "build": "fitbit-build"
+  }
+}
