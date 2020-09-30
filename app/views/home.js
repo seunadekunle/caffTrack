@@ -6,9 +6,10 @@ import { WEEK_DAYS } from "../../resources/utils/globals.js";
 import * as messaging from "messaging";
 
 let views, welcomeText, headerText, caffeineText, indicator;
-var optionsList, addButton, startScreen, date, hours, day, unit_measurement;
+var optionsList, addButton, startScreen, date, hours, day, unit_measurement, week_list, caff_history;
 
 const MAX_VALUE = 400;
+const NUM_ELEMS = 7;
 var intake = 0, limit = 180, currentX = 12;
 
 // Listen for the onmessage event
@@ -16,6 +17,21 @@ var intake = 0, limit = 180, currentX = 12;
 //   // Output the message to the console
 //   unit_measurement = JSON.stringify(evt.data.newValue);
 // }
+
+  // retrieve previous caffeine information
+  messaging.peerSocket.onmessage = (evt) => {
+    caff_history = evt.data.history;
+
+    // handle null elements
+    for(var i = 0; i < caff_history.length; i++){
+      if(!caff_history[i]){
+        caff_history[i] = 0;
+      }
+    }
+
+    console.log(typeof(caff_history));
+  };
+
 
 export function init(_views, value) {
   views = _views;
@@ -44,6 +60,7 @@ function onMount() {
   caffeineText = document.getElementById("caffeine-count");
 
   indicator = document.getElementById("indicator");
+  week_list = document.getElementById("week-list");
 
   // dyanmically change the line position value and indicator
   if (startScreen && intake > 20 && intake < MAX_VALUE) {
@@ -56,8 +73,6 @@ function onMount() {
     currentX = startScreen.width * 0.90;
     indicator.style.opacity = 0.75;
   }
-
-  console.log(currentX);
 
   // if button is clicked
   addButton.addEventListener("click", clickHandler);
@@ -81,7 +96,12 @@ function onMount() {
     welcomeText = "Good\nNight";
   }
 
-  animate();
+  // populate list with data
+  if (week_list && WEEK_DAYS) {
+    console.log('true');
+    var pastWeek = getPastWeek(WEEK_DAYS[date.getDay()])
+    createList(pastWeek[0], pastWeek[1]);
+  }
 
   // updates welcome text
   if (headerText) {
@@ -92,7 +112,10 @@ function onMount() {
   //add code for new day
   if (hours == 24) {
     intake = 0;
+    sendValue(intake);
   }
+
+  animate();
 }
 
 // Send a message to the peer
@@ -117,13 +140,59 @@ function animate() {
   // requestAnimationFrame(animate);
 }
 
-function clickHandler(_evt) {
-  // Navigate to another screen
-  views.navigate("list_options");
+function createList(week_array, week_history) {
+  week_list.delegate = {
+    getTileInfo: function (index) {
+      return {
+        type: "list-pool",
+        day: week_array[index],
+        amount: week_history[index]
+      };
+    },
+    configureTile: function (tile, info) {
+      if (info.type == "list-pool") {
+        tile.getElementById("day").text = `${info.day}`;
+        tile.getElementById("amount").text = `${info.amount} mg`;
+      }
+    }
+  };
+
+  // length must be set AFTER delegate
+  week_list.length = NUM_ELEMS;
 }
 
-// ads prefix to numerical value
+function clickHandler(_evt) {
+  // Navigate to another screen
+  views.navigate("list_options", 0);
+}
+
+// adds prefix to numerical value
 function updateCaffeineText() {
   caffeineText.text = `${intake} mg`;
   writeData(intake);
+}
+
+// get past week from today
+function getPastWeek(day) {
+  var count = 0;
+  var newWeek = [];
+  var newHistory = []
+  var index = (WEEK_DAYS.indexOf(day)) + 1;
+
+  while (count < WEEK_DAYS.length) {
+    if (index == WEEK_DAYS.length) {
+      index = 0;
+    }
+    newWeek.push(WEEK_DAYS[index]);
+
+    if(caff_history){
+      newHistory.push(caff_history[index]);
+    }
+
+    index += 1;
+    count += 1;
+  }
+
+  console.log(newHistory);
+  return [newWeek, newHistory];
 }

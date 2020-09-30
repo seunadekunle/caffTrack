@@ -7,6 +7,16 @@ import * as messaging from "messaging";
 let views;
 var NUM_ELEMS, VTList, data, unit_measurement = "oz";
 
+
+document.onkeypress = function(e) {
+  console.log("Key pressed: " + e.key);
+  e.preventDefault();
+    if (e.key==="up") {
+      console.log("trapped");
+      // me.exit();
+    }
+  }
+
 export function init(_views, value) {
   views = _views;
   onMount();
@@ -28,12 +38,14 @@ function onMount() {
   // retrieves list from ui file
   VTList = document.getElementById('my-list');
 
-  // populate list with data
-  setupList();
+  if(VTList && data){
+    // populate list with data
+    setupList();
 
-  // fix issue with ui positioning and selecting the first item
-  VTList.value = 3; // Scroll to the 3rd item
-  VTList.value = 0; // Scroll to the 1st item
+    // fix issue with ui positioning and selecting the first item
+    VTList.value = 3; // Scroll to the 3rd item
+    VTList.value = 0; // Scroll to the 1st item
+  }
 }
 
 function readFile() {

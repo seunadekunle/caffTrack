@@ -3,16 +3,24 @@ import { settingsStorage } from "settings";
 import { localStorage } from "local-storage";
 import { WEEK_DAYS } from "../resources/utils/globals.js";
 
-var intake;
+var intake, caff_history;
 var date = new Date();
 
 // Message socket opens
 messaging.peerSocket.onopen = () => {
   console.log("Companion Socket Open");
+
   intake = localStorage.getItem(WEEK_DAYS[date.getDay()]);
-  
+  caff_history = [];
+
+  // retrieves data from past week
+  for(var i = 0; i < WEEK_DAYS.length; i++){
+    caff_history.push(localStorage.getItem(WEEK_DAYS[i]));
+  }
+
   let data = {
-    value: intake
+    value: intake,
+    history: caff_history
   };
     
   sendData(data);

@@ -15,15 +15,47 @@
 
         <set href="#stroke" attributeName="href" to="/mnt/sysassets/widgets/images/square_button/btn_square_fill_p.9.png"/>
         <set href="#stroke" attributeName="fill" to="fb-white" />
-     <use href="#scrollview-item" fill="#3A2E2E">
-       <gradientRect width="100%" height="20%"
+    </use>
+    </use>
+      <use href="#scrollview-item">
+      <gradientRect width="100%" height="100%"
         gradient-type="linear"
         gradient-x1="0" gradient-y1="50"
         gradient-x2="0" gradient-y2="100%-50"
         gradient-color1="#593f32" gradient-color2="#3A2E2E"/>
        
-      </use>
+      <defs>
+        <symbol id="week-item" href="#tile-list-item" class="view-item"display="inline">
+            <rect fill="#333333" x="0" y="0" width="10" height="100%"></rect>
+          <text id="day"/> 
+          <text id="amount"/>
+        </symbol>
+
+      </defs>
+      <use id="week-list" width="80%" x="10%" href="#tile-list" >
+        <gradientRect width="100%" height="100%"
+        gradient-type="linear"
+        gradient-x1="0" gradient-y1="50"
+        gradient-x2="0" gradient-y2="100%-50"
+        gradient-color1="#593f32" gradient-color2="#3A2E2E" x="0" y="0"/>
+
+        <var id="virtual" value="1" />
+        <var id="separator-height-bottom" value="2" />
+        <var id="reorder-enabled" value="0" />
+        <var id="peek-enabled" value="1" />
+
+        <use id="list-pool" href="#tile-list-pool">
+          <use id="list-pool[0]" href="#week-item" class="tile-list-item" />
+          <use id="list-pool[1]" href="#week-item" class="tile-list-item" />
+          <use id="list-pool[2]" href="#week-item" class="tile-list-item" />
+          <use id="list-pool[3]" href="#week-item" class="tile-list-item" />
+          <use id="list-pool[4]" href="#week-item" class="tile-list-item" />
+          <use id="list-pool[5]" href="#week-item" class="tile-list-item" />
+          <use id="list-pool[6]" href="#week-item" class="tile-list-item" />
+        </use>
         
+      </use>
+    </use>
   </use>
 
   </svg>

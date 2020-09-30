@@ -25,6 +25,12 @@ export function init(_views, _prefix, intake) {
     intake = evt.data.value;
     // convert string to int
     intake = parseInt(intake);
+
+    // null value handler
+    if(!intake){
+      intake = 0;
+    }
+    
   };
 
   /**
@@ -38,6 +44,7 @@ export function init(_views, _prefix, intake) {
     viewJSLoader()
       .then(({ init }) => {
         document.replaceSync(`${viewsPrefix}${viewGUI}${viewsSuffix}`);
+        console.log(`${viewsPrefix}${viewGUI}${viewsSuffix}`);
         init({ navigate }, value);
       })
       .catch(() => {

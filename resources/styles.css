@@ -2,6 +2,7 @@
   viewport-fill: #3d2b22;
 }
 
+/* code for main page */
 #start-screen {
   viewport-fill: #593f32;
 }
@@ -47,11 +48,37 @@
   height: 70;
 }
 
-.tile-list-item-2 {
-  height: 100;
-  fill: white;
+.view-item {
+  height: 50;
 }
 
+#day {
+  fill: #E4DFDA;
+  text-anchor: start;
+  font-size: 25;
+  x: 10%;
+  text-length: 100;
+}
+
+#amount {
+  fill: #E4DFDA;
+  text-anchor: end;
+  font-size: 20;
+  x: 90%;
+  opacity: 0.75;
+  text-length: 100;
+}
+
+.header text {
+  font-weight: bold;
+  fill: #DDC9B4;
+  font-size: 30;
+  padding: 20px;
+  x: 10%;
+  y: 75%;
+}
+
+/* code for list page */
 #main_text {
   text-length: 100;
   height: 32;
@@ -68,6 +95,18 @@
   x: 90%;
   font-size: 18;
   width: 100%;
+}
+
+.list-item {
+  height: 40;
+  border-left: 500;
+  background-color: #d79e4f;
+}
+
+.list-item text {
+  fill: "white";
+  text-anchor: start;
+  font-size: 24;
 }
 
 .tile-divider-bottom {

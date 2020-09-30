@@ -4,12 +4,7 @@ import { readFileSync } from "fs";
 
 import { init } from "./views";
 
-let intake;
-try {
-  intake = readFileSync('/mnt/assets/resources/utils/data.json', 'json').drink_values[0].value;
-} catch (err) {
-  intake = 0;
-}
+var intake = 0;
 /**
  * Definition for each view in the resources/views folder, and the associated
  * JavaScript module is lazily loaded alongside its view.
