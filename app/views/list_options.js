@@ -8,15 +8,6 @@ let views;
 var NUM_ELEMS, VTList, data, unit_measurement = "oz";
 
 
-document.onkeypress = function(e) {
-  console.log("Key pressed: " + e.key);
-  e.preventDefault();
-    if (e.key==="up") {
-      console.log("trapped");
-      // me.exit();
-    }
-  }
-
 export function init(_views, value) {
   views = _views;
   onMount();
@@ -31,6 +22,15 @@ function onMount() {
   //   // Output the message to the console
   //   unit_measurement = evt.data.newValue;
   // };
+
+  // if back button is pressed
+  document.onkeypress = function(e) {
+    e.preventDefault();
+      if (e.key==="back") {
+        views.navigate("home", 0);
+      }
+    }
+  
 
   unit_measurement = "fl. oz";
   readFile();

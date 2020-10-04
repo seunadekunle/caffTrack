@@ -19,20 +19,18 @@ var intake = 0, limit = 180, currentX = 12;
 // }
 
   // retrieve previous caffeine information
-  messaging.peerSocket.onmessage = (evt) => {
-    caff_history = evt.data.history;
-
-    // handle null elements
-    for(var i = 0; i < caff_history.length; i++){
-      if(!caff_history[i]){
-        caff_history[i] = 0;
-      }
-    }
-
-    console.log(typeof(caff_history));
-  };
-
-
+  // messaging.peerSocket.onmessage = (evt) => {
+  //   caff_history = evt.data.history;
+  
+  //   // handle null elements
+  //   for(var i = 0; i < caff_history.length; i++){
+  //     if(!caff_history[i]){
+  //       caff_history[i] = 0;
+  //     }
+  //   }
+  //   console.log('caff_history');
+  // };
+  
 export function init(_views, value) {
   views = _views;
   intake += value;
@@ -74,11 +72,12 @@ function onMount() {
     indicator.style.opacity = 0.75;
   }
 
+
   // if button is clicked
   addButton.addEventListener("click", clickHandler);
 
-  date = new Date();
   // get current hour
+  date = new Date();
   hours = date.getHours();
 
   // updates text based on time
@@ -97,12 +96,14 @@ function onMount() {
   }
 
   // populate list with data
-  if (week_list && WEEK_DAYS) {
-    console.log('true');
-    var pastWeek = getPastWeek(WEEK_DAYS[date.getDay()])
-    createList(pastWeek[0], pastWeek[1]);
-  }
+  // if (week_list && WEEK_DAYS) {
+  //   console.log('true');
+  //   var pastWeek = getPastWeek(WEEK_DAYS[date.getDay()])
+  //   createList(pastWeek[0], pastWeek[1]);
+  // }
 
+  animate();
+  
   // updates welcome text
   if (headerText) {
     headerText.text = welcomeText;
@@ -114,8 +115,6 @@ function onMount() {
     intake = 0;
     sendValue(intake);
   }
-
-  animate();
 }
 
 // Send a message to the peer
@@ -137,7 +136,7 @@ function animate() {
     indicator.x2 = indicator.x2 + 1;
   }
 
-  // requestAnimationFrame(animate);
+  setTimeout(requestAnimationFrame(animate), 2000);
 }
 
 function createList(week_array, week_history) {
